@@ -27,7 +27,7 @@ const Register = () => {
 
   const handleFormSubmit = async (values, onSubmitProps) => {
     axios
-      .post("http://127.0.0.1:8000/api/signup", values)
+      .post("https://helmy-blog.000webhostapp.com/api/signup", values)
       .then((res) => {
         setState("success");
         setMessage("The account has been created successfully!");
