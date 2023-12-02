@@ -39,7 +39,7 @@ export default function HomePage() {
       .catch((err) => {
         setState("error");
         console.log(err);
-        setMessage(err.response.data.message);
+        setMessage(err.message);
         setLoading(false);
         setAlert(true);
         setTimeout(() => {
