@@ -15,16 +15,7 @@ export default function HomePage() {
   const [alert, setAlert] = useState(false);
   const [message, setMessage] = useState("");
   const [state, setState] = useState("success");
-  useEffect(() => {
-    axios
-      .get("https://helmy-natours.onrender.com/api/v1/tours")
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [loading, alert]);
+  useEffect(() => {}, [loading, alert]);
 
   const loginSchema = yup.object().shape({
     email: yup.string().email("invalid email").required("required"),
