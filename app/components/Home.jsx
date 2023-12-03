@@ -18,34 +18,50 @@ export default function HomePage() {
   useEffect(() => {}, [loading, alert]);
 
   const loginSchema = yup.object().shape({
+    name: yup.string().required("required"),
     email: yup.string().email("invalid email").required("required"),
     password: yup.string().required("required"),
   });
 
   const initialValuesLogin = {
+    name: "",
     email: "",
     password: "",
   };
 
   const handleFormSubmit = (values, onSubmitProps) => {
-    setLoading(true);
-    axios
-      .post("https://helmy-blog.000webhostapp.com/api/login", values)
-      .then((res) => {
-        localStorage.setItem("token", res.data.token);
-        localStorage.setItem("currentUser", JSON.stringify(res.data.user));
-        router.push("/blogs");
+    setTimeout(() => {
+      setLoading(true);
+    }, 2000);
+    localStorage.setItem("token", Math.random() * 1000);
+    localStorage.setItem(
+      "currentUser",
+      JSON.stringify({
+        id: 1,
+        name: values.name,
+        email: values.email,
+        role: "user",
+        created_at: Date.now(),
       })
-      .catch((err) => {
-        setState("error");
-        console.log(err);
-        setMessage(err.message);
-        setLoading(false);
-        setAlert(true);
-        setTimeout(() => {
-          setAlert(false);
-        }, 5000);
-      });
+    );
+    router.push("/blogs");
+    // axios
+    //   .post("https://helmy-blog.000webhostapp.com/api/login", values)
+    //   .then((res) => {
+    //     localStorage.setItem("token", res.data.token);
+    //     localStorage.setItem("currentUser", JSON.stringify(res.data.user));
+    //     router.push("/blogs");
+    //   })
+    //   .catch((err) => {
+    //     setState("error");
+    //     console.log(err);
+    //     setMessage(err.message);
+    //     setLoading(false);
+    //     setAlert(true);
+    //     setTimeout(() => {
+    //       setAlert(false);
+    //     }, 5000);
+    //   });
   };
   return loading ? (
     <Loading />
@@ -83,6 +99,16 @@ export default function HomePage() {
                   gap="30px"
                   gridTemplateColumns="repeat(4, minmax(0, 1fr))"
                 >
+                  <TextField
+                    label="Name"
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    value={values.name}
+                    name="name"
+                    error={Boolean(touched.name) && Boolean(errors.name)}
+                    helperText={touched.name && errors.name}
+                    sx={{ gridColumn: "span 4" }}
+                  />
                   <TextField
                     label="Email"
                     onBlur={handleBlur}

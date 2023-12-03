@@ -4,24 +4,184 @@ import axios from "axios";
 import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
 import { styles } from "../globals.css";
 const Blog = (props) => {
+  const blogs = [
+    {
+      id: 1,
+      title: "Blog 1",
+      category: "web development",
+      is_paid: 0,
+      employer: {
+        user_id: 1,
+        user: {
+          name: "Mohamed helmy",
+        },
+      },
+      created_at: "2023-12-02T15:28:38.000000Z",
+      section: [
+        {
+          id: 1,
+          section_title: "the most popular problems with deployment",
+          content: "the version of php in the server is too old",
+          image:
+            "https://th.bing.com/th/id/OIP.KH5vSxtv3pLvnTWLWhGrCwAAAA?rs=1&pid=ImgDetMain",
+          blog_id: 1,
+          created_at: "2023-12-02T15:28:38.000000Z",
+          updated_at: "2023-12-02T15:28:38.000000Z",
+        },
+      ],
+    },
+    {
+      id: 2,
+      title: "Blog 2",
+      category: "web development",
+      is_paid: 0,
+      employer: {
+        user_id: 1,
+        user: {
+          name: "Mohamed helmy",
+        },
+      },
+      created_at: "2023-12-02T15:28:38.000000Z",
+      section: [
+        {
+          id: 1,
+          section_title: "the most popular problems with deployment",
+          content: "the version of php in the server is too old",
+          image:
+            "https://th.bing.com/th/id/OIP.KH5vSxtv3pLvnTWLWhGrCwAAAA?rs=1&pid=ImgDetMain",
+          blog_id: 1,
+          created_at: "2023-12-02T15:28:38.000000Z",
+          updated_at: "2023-12-02T15:28:38.000000Z",
+        },
+      ],
+    },
+    {
+      id: 3,
+      title: "Blog 3",
+      category: "web development",
+      is_paid: 1,
+      employer: {
+        user_id: 11,
+        user: {
+          name: "Mohamed helmy",
+        },
+      },
+      created_at: "2023-12-02T15:28:38.000000Z",
+      section: [
+        {
+          id: 1,
+          section_title: "the most popular problems with deployment",
+          content: "the version of php in the server is too old",
+          image:
+            "https://th.bing.com/th/id/OIP.KH5vSxtv3pLvnTWLWhGrCwAAAA?rs=1&pid=ImgDetMain",
+          blog_id: 1,
+          created_at: "2023-12-02T15:28:38.000000Z",
+          updated_at: "2023-12-02T15:28:38.000000Z",
+        },
+      ],
+    },
+    {
+      id: 4,
+      title: "Blog 4",
+      category: "web development",
+      is_paid: 1,
+      employer: {
+        user_id: 11,
+        user: {
+          name: "Mohamed helmy",
+        },
+      },
+      created_at: "2023-12-02T15:28:38.000000Z",
+      section: [
+        {
+          id: 1,
+          section_title: "the most popular problems with deployment",
+          content: "the version of php in the server is too old",
+          image:
+            "https://th.bing.com/th/id/OIP.KH5vSxtv3pLvnTWLWhGrCwAAAA?rs=1&pid=ImgDetMain",
+          blog_id: 1,
+          created_at: "2023-12-02T15:28:38.000000Z",
+          updated_at: "2023-12-02T15:28:38.000000Z",
+        },
+      ],
+    },
+    {
+      id: 5,
+      title: "Blog 5",
+      category: "web development",
+      is_paid: 1,
+      employer: {
+        user_id: 11,
+        user: {
+          name: "Mohamed helmy",
+        },
+      },
+      created_at: "2023-12-02T15:28:38.000000Z",
+      section: [
+        {
+          id: 1,
+          section_title: "the most popular problems with deployment",
+          content: "the version of php in the server is too old",
+          image:
+            "https://th.bing.com/th/id/OIP.KH5vSxtv3pLvnTWLWhGrCwAAAA?rs=1&pid=ImgDetMain",
+          blog_id: 1,
+          created_at: "2023-12-02T15:28:38.000000Z",
+          updated_at: "2023-12-02T15:28:38.000000Z",
+        },
+      ],
+    },
+    {
+      id: 6,
+      title: "Blog 6",
+      category: "web development",
+      is_paid: 0,
+      employer: {
+        user_id: 1,
+        user: {
+          name: "Mohamed helmy",
+        },
+      },
+      created_at: "2023-12-02T15:28:38.000000Z",
+      section: [
+        {
+          id: 1,
+          section_title: "the most popular problems with deployment",
+          content: "the version of php in the server is too old",
+          image:
+            "https://th.bing.com/th/id/OIP.KH5vSxtv3pLvnTWLWhGrCwAAAA?rs=1&pid=ImgDetMain",
+          blog_id: 1,
+          created_at: "2023-12-02T15:28:38.000000Z",
+          updated_at: "2023-12-02T15:28:38.000000Z",
+        },
+      ],
+    },
+  ];
+
   const [blog, setBlog] = useState({});
   const [employer, setEmployer] = useState({});
   const [sections, setSections] = useState([]);
   const [user, setUser] = useState({});
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem("currentUser")));
-    axios
-      .get(`https://helmy-blog.000webhostapp.com/api/blogs/${props.id}`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      })
-      .then((res) => {
-        setBlog(res.data.data);
-        setEmployer(res.data.data.employer.user);
-        setSections(res.data.data.section);
-      })
-      .catch((err) => console.log(err));
+    blogs.map((blog) => (blog.id == props.id ? setBlog(blog) : null));
+    blogs.map((blog) =>
+      blog.id == props.id ? setEmployer(blog.employer.user) : null
+    );
+    blogs.map((blog) =>
+      blog.id == props.id ? setSections(blog.section) : null
+    );
+    // axios
+    //   .get(`https://helmy-blog.000webhostapp.com/api/blogs/${props.id}`, {
+    //     headers: {
+    //       Authorization: `Bearer ${localStorage.getItem("token")}`,
+    //     },
+    //   })
+    //   .then((res) => {
+    //     setBlog(res.data.data);
+    //     setEmployer(res.data.data.employer.user);
+    //     setSections(res.data.data.section);
+    //   })
+    //   .catch((err) => console.log(err));
   }, []);
   return (
     <div>
@@ -64,7 +224,7 @@ const Blog = (props) => {
                 {section.image && (
                   <div className="image">
                     <img
-                      src={`https://helmy-blog.000webhostapp.com/images/${section.image}`}
+                      src={section.image}
                       alt="image"
                       style={{ width: "100%", height: "auto" }}
                     />

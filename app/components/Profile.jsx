@@ -7,6 +7,86 @@ import { Formik } from "formik";
 import * as yup from "yup";
 import { useRouter } from "next/navigation";
 const Profile = () => {
+  const allBlogs = [
+    {
+      id: 1,
+      title: "Blog 1",
+      category: "web development",
+      is_paid: 0,
+      employer: {
+        user_id: 1,
+        user: {
+          name: "Mohamed helmy",
+        },
+      },
+      created_at: "2023-12-02T15:28:38.000000Z",
+    },
+    {
+      id: 2,
+      title: "Blog 2",
+      category: "web development",
+      is_paid: 0,
+      employer: {
+        user_id: 1,
+        user: {
+          name: "Mohamed helmy",
+        },
+      },
+      created_at: "2023-12-02T15:28:38.000000Z",
+    },
+    {
+      id: 3,
+      title: "Blog 3",
+      category: "web development",
+      is_paid: 1,
+      employer: {
+        user_id: 11,
+        user: {
+          name: "Mohamed helmy",
+        },
+      },
+      created_at: "2023-12-02T15:28:38.000000Z",
+    },
+    {
+      id: 4,
+      title: "Blog 4",
+      category: "web development",
+      is_paid: 1,
+      employer: {
+        user_id: 11,
+        user: {
+          name: "Mohamed helmy",
+        },
+      },
+      created_at: "2023-12-02T15:28:38.000000Z",
+    },
+    {
+      id: 5,
+      title: "Blog 5",
+      category: "web development",
+      is_paid: 1,
+      employer: {
+        user_id: 11,
+        user: {
+          name: "Mohamed helmy",
+        },
+      },
+      created_at: "2023-12-02T15:28:38.000000Z",
+    },
+    {
+      id: 6,
+      title: "Blog 6",
+      category: "web development",
+      is_paid: 0,
+      employer: {
+        user_id: 1,
+        user: {
+          name: "Mohamed helmy",
+        },
+      },
+      created_at: "2023-12-02T15:28:38.000000Z",
+    },
+  ];
   const router = useRouter();
   const [edit, setEdit] = useState(false);
   const [user, setUser] = useState({});
@@ -29,29 +109,35 @@ const Profile = () => {
   };
 
   const handleFormSubmit = async (values, onSubmitProps) => {
-    axios
-      .patch(
-        `https://helmy-blog.000webhostapp.com/api/employers/${user.id}}`,
-        values
-      )
-      .then((res) => {
-        console.log(res);
-        setState("success");
-        setMessage(`the Profile has been updated successfully`);
-        setAlert(true);
-        setTimeout(() => {
-          setAlert(false);
-        }, 5000);
-      })
-      .catch((err) => {
-        console.log(err);
-        setState("error");
-        setMessage(`something went wrong`);
-        setAlert(true);
-        setTimeout(() => {
-          setAlert(false);
-        }, 5000);
-      });
+    setState("success");
+    setMessage(`the Profile has been updated successfully`);
+    setAlert(true);
+    setTimeout(() => {
+      setAlert(false);
+    }, 5000);
+    // axios
+    //   .patch(
+    //     `https://helmy-blog.000webhostapp.com/api/employers/${user.id}}`,
+    //     values
+    //   )
+    //   .then((res) => {
+    //     console.log(res);
+    //     setState("success");
+    //     setMessage(`the Profile has been updated successfully`);
+    //     setAlert(true);
+    //     setTimeout(() => {
+    //       setAlert(false);
+    //     }, 5000);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //     setState("error");
+    //     setMessage(`something went wrong`);
+    //     setAlert(true);
+    //     setTimeout(() => {
+    //       setAlert(false);
+    //     }, 5000);
+    //   });
   };
 
   const resetPasswordSchema = yup.object().shape({
@@ -66,29 +152,35 @@ const Profile = () => {
 
   const handlePasswordFormSubmit = async (values, onSubmitProps) => {
     if (values.password === values.confirmPassword) {
-      axios
-        .patch(
-          `https://helmy-blog.000webhostapp.com/api/employers/${user.id}}`,
-          values
-        )
-        .then((res) => {
-          console.log(res);
-          setPasswordState("success");
-          setPasswordMessage(`the password has been updated successfully`);
-          setPasswordAlert(true);
-          setTimeout(() => {
-            setPasswordAlert(false);
-          }, 5000);
-        })
-        .catch((err) => {
-          console.log(err);
-          setPasswordState("error");
-          setPasswordMessage(`something went wrong`);
-          setPasswordAlert(true);
-          setTimeout(() => {
-            setPasswordAlert(false);
-          }, 5000);
-        });
+      setPasswordState("success");
+      setPasswordMessage(`the password has been updated successfully`);
+      setPasswordAlert(true);
+      setTimeout(() => {
+        setPasswordAlert(false);
+      }, 5000);
+      // axios
+      //   .patch(
+      //     `https://helmy-blog.000webhostapp.com/api/employers/${user.id}}`,
+      //     values
+      //   )
+      //   .then((res) => {
+      //     console.log(res);
+      //     setPasswordState("success");
+      //     setPasswordMessage(`the password has been updated successfully`);
+      //     setPasswordAlert(true);
+      //     setTimeout(() => {
+      //       setPasswordAlert(false);
+      //     }, 5000);
+      //   })
+      //   .catch((err) => {
+      //     console.log(err);
+      //     setPasswordState("error");
+      //     setPasswordMessage(`something went wrong`);
+      //     setPasswordAlert(true);
+      //     setTimeout(() => {
+      //       setPasswordAlert(false);
+      //     }, 5000);
+      //   });
     } else {
       setPasswordState("error");
       setPasswordMessage(`passwords do not match`);
@@ -101,22 +193,29 @@ const Profile = () => {
 
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem("currentUser")));
-    axios
-      .get("https://helmy-blog.000webhostapp.com/api/blogs", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      })
-      .then((response) => {
-        setBlogs(
-          response.data.data.filter(
-            (blog) =>
-              blog.employer.user_id ==
-              JSON.parse(localStorage.getItem("currentUser")).id
-          )
-        );
-      })
-      .catch((err) => console.log(err));
+    setBlogs(
+      allBlogs.filter(
+        (blog) =>
+          blog.employer.user_id ==
+          JSON.parse(localStorage.getItem("currentUser")).id
+      )
+    );
+    // axios
+    //   .get("https://helmy-blog.000webhostapp.com/api/blogs", {
+    //     headers: {
+    //       Authorization: `Bearer ${localStorage.getItem("token")}`,
+    //     },
+    //   })
+    //   .then((response) => {
+    //     setBlogs(
+    //       response.data.data.filter(
+    //         (blog) =>
+    //           blog.employer.user_id ==
+    //           JSON.parse(localStorage.getItem("currentUser")).id
+    //       )
+    //     );
+    //   })
+    //   .catch((err) => console.log(err));
   }, []);
   return (
     <>
@@ -231,8 +330,8 @@ const Profile = () => {
               </Formik>
               <Formik
                 onSubmit={handlePasswordFormSubmit}
-                initialValues={initialValuesProfile}
-                validationSchema={profileSchema}
+                initialValues={initialValuesResetPassword}
+                validationSchema={resetPasswordSchema}
               >
                 {({
                   values,

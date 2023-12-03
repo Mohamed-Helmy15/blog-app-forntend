@@ -10,19 +10,93 @@ import { useRouter } from "next/navigation";
 const BlogsFetching = () => {
   const router = useRouter();
   const [search, setSearch] = useState("");
-  const [blogs, setBlogs] = useState([]);
-  useEffect(() => {
-    axios
-      .get("https://helmy-blog.000webhostapp.com/api/blogs", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+  // const [blogs, setBlogs] = useState([]);
+  const blogs = [
+    {
+      id: 1,
+      title: "Blog 1",
+      category: "web development",
+      is_paid: 0,
+      employer: {
+        user: {
+          name: "Mohamed helmy",
         },
-      })
-      .then((response) => {
-        setBlogs(response.data.data);
-      })
-      .catch((err) => console.log(err));
-  }, []);
+      },
+      created_at: "2023-12-02T15:28:38.000000Z",
+    },
+    {
+      id: 2,
+      title: "Blog 2",
+      category: "web development",
+      is_paid: 0,
+      employer: {
+        user: {
+          name: "Mohamed helmy",
+        },
+      },
+      created_at: "2023-12-02T15:28:38.000000Z",
+    },
+    {
+      id: 3,
+      title: "Blog 3",
+      category: "web development",
+      is_paid: 1,
+      employer: {
+        user: {
+          name: "Mohamed helmy",
+        },
+      },
+      created_at: "2023-12-02T15:28:38.000000Z",
+    },
+    {
+      id: 4,
+      title: "Blog 4",
+      category: "web development",
+      is_paid: 1,
+      employer: {
+        user: {
+          name: "Mohamed helmy",
+        },
+      },
+      created_at: "2023-12-02T15:28:38.000000Z",
+    },
+    {
+      id: 5,
+      title: "Blog 5",
+      category: "web development",
+      is_paid: 1,
+      employer: {
+        user: {
+          name: "Mohamed helmy",
+        },
+      },
+      created_at: "2023-12-02T15:28:38.000000Z",
+    },
+    {
+      id: 6,
+      title: "Blog 6",
+      category: "web development",
+      is_paid: 0,
+      employer: {
+        user: {
+          name: "Mohamed helmy",
+        },
+      },
+      created_at: "2023-12-02T15:28:38.000000Z",
+    },
+  ];
+  // useEffect(() => {
+  //   axios
+  //     .get("https://helmy-blog.000webhostapp.com/api/blogs", {
+  //       headers: {
+  //         Authorization: `Bearer ${localStorage.getItem("token")}`,
+  //       },
+  //     })
+  //     .then((response) => {
+  //       setBlogs(response.data.data);
+  //     })
+  //     .catch((err) => console.log(err));
+  // }, []);
   return (
     <div className="blogs">
       <div className="search">
