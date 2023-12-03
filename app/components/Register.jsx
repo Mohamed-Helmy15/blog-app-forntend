@@ -26,24 +26,30 @@ const Register = () => {
   };
 
   const handleFormSubmit = async (values, onSubmitProps) => {
-    axios
-      .post("https://helmy-blog.000webhostapp.com/api/signup", values)
-      .then((res) => {
-        setState("success");
-        setMessage("The account has been created successfully!");
-        setAlert(true);
-        setTimeout(() => {
-          router.push("/");
-        }, 1500);
-      })
-      .catch((err) => {
-        setState("error");
-        setMessage(err.response.data.message);
-        setAlert(true);
-        setTimeout(() => {
-          setAlert(false);
-        }, 5000);
-      });
+    setState("success");
+    setMessage("The account has been created successfully!");
+    setAlert(true);
+    setTimeout(() => {
+      router.push("/");
+    }, 1500);
+    // axios
+    //   .post("https://helmy-blog.000webhostapp.com/api/signup", values)
+    //   .then((res) => {
+    //     setState("success");
+    //     setMessage("The account has been created successfully!");
+    //     setAlert(true);
+    //     setTimeout(() => {
+    //       router.push("/");
+    //     }, 1500);
+    //   })
+    //   .catch((err) => {
+    //     setState("error");
+    //     setMessage(err.response.data.message);
+    //     setAlert(true);
+    //     setTimeout(() => {
+    //       setAlert(false);
+    //     }, 5000);
+    //   });
   };
 
   return (

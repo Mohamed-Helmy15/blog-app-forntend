@@ -109,6 +109,16 @@ const Profile = () => {
   };
 
   const handleFormSubmit = async (values, onSubmitProps) => {
+    localStorage.setItem(
+      "currentUser",
+      JSON.stringify({
+        id: 1,
+        name: values.name,
+        email: values.email,
+        role: "user",
+        created_at: Date.now(),
+      })
+    );
     setState("success");
     setMessage(`the Profile has been updated successfully`);
     setAlert(true);

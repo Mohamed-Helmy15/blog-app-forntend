@@ -19,26 +19,32 @@ const ForgotPassword = () => {
   };
 
   const handleFormSubmit = async (values, onSubmitProps) => {
-    axios
-      .post("https://helmy-blog.000webhostapp.com/api/forgot-password", values)
-      .then((res) => {
-        console.log(res);
-        setState("success");
-        setMessage(`The link was sent, Please check ${values.email}`);
-        setAlert(true);
-        setTimeout(() => {
-          setAlert(false);
-        }, 5000);
-      })
-      .catch((err) => {
-        console.log(err);
-        setState("error");
-        setMessage(`${values.email} Email does not exist`);
-        setAlert(true);
-        setTimeout(() => {
-          setAlert(false);
-        }, 5000);
-      });
+    setState("success");
+    setMessage(`The link was sent, Please check ${values.email}`);
+    setAlert(true);
+    setTimeout(() => {
+      setAlert(false);
+    }, 5000);
+    // axios
+    //   .post("https://helmy-blog.000webhostapp.com/api/forgot-password", values)
+    //   .then((res) => {
+    //     console.log(res);
+    //     setState("success");
+    //     setMessage(`The link was sent, Please check ${values.email}`);
+    //     setAlert(true);
+    //     setTimeout(() => {
+    //       setAlert(false);
+    //     }, 5000);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //     setState("error");
+    //     setMessage(`${values.email} Email does not exist`);
+    //     setAlert(true);
+    //     setTimeout(() => {
+    //       setAlert(false);
+    //     }, 5000);
+    //   });
   };
   return (
     <Formik

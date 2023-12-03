@@ -23,28 +23,34 @@ const ResetPassword = ({ token }) => {
   };
 
   const handleFormSubmit = async (values, onSubmitProps) => {
-    axios
-      .post(
-        `https://helmy-blog.000webhostapp.com/reset-password/${token}`,
-        values
-      )
-      .then((res) => {
-        setState("success");
-        setMessage(`Password has been updated successfully`);
-        setAlert(true);
-        setTimeout(() => {
-          router.push("/");
-        }, 1500);
-      })
-      .catch((err) => {
-        setState("error");
-        setMessage("Invalid URL");
-        setAlert(true);
-        setTimeout(() => {
-          router.push("/forgot-password");
-          setAlert(false);
-        }, 5000);
-      });
+    setState("success");
+    setMessage(`Password has been updated successfully`);
+    setAlert(true);
+    setTimeout(() => {
+      router.push("/");
+    }, 1500);
+    // axios
+    //   .post(
+    //     `https://helmy-blog.000webhostapp.com/reset-password/${token}`,
+    //     values
+    //   )
+    //   .then((res) => {
+    //     setState("success");
+    //     setMessage(`Password has been updated successfully`);
+    //     setAlert(true);
+    //     setTimeout(() => {
+    //       router.push("/");
+    //     }, 1500);
+    //   })
+    //   .catch((err) => {
+    //     setState("error");
+    //     setMessage("Invalid URL");
+    //     setAlert(true);
+    //     setTimeout(() => {
+    //       router.push("/forgot-password");
+    //       setAlert(false);
+    //     }, 5000);
+    //   });
   };
   return (
     <Formik
