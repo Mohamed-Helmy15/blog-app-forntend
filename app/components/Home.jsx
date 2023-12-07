@@ -15,19 +15,7 @@ export default function HomePage() {
   const [alert, setAlert] = useState(false);
   const [message, setMessage] = useState("");
   const [state, setState] = useState("success");
-  useEffect(() => {
-    axios
-      .post("https://blog-api-qjoh.onrender.com/api/v1/users/login", {
-        email: "user1@gmail.com",
-        password: "pass1234",
-      })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [loading, alert]);
+  useEffect(() => {}, [loading, alert]);
 
   const loginSchema = yup.object().shape({
     name: yup.string().required("required"),
